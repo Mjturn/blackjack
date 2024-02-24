@@ -27,7 +27,7 @@ public class Deck {
         deck = new Card[52];
     }
 
-    public void construct() {
+    public Card[] construct() {
         int index = 0;
         
          for(String suit : suits) {
@@ -37,8 +37,6 @@ public class Deck {
             }
         }
 
-        for(Card card : deck) {
-            System.out.println(card);
-        }
+        return deck;
     }
 }
