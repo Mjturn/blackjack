@@ -25,23 +25,31 @@ public class Dealer {
         dealerCards.add(dealerCard1);
         
         System.out.println("User Cards:");
+        int userTotal = 0;
         for(int i = 0; i < userCards.size(); i++) {
             System.out.println(userCards.get(i));
+            userTotal += deck.getValues().get(userCards.get(i).getValue());
         }
 
+        System.out.printf("User Total: %d", userTotal);
         System.out.println();
-        
+        System.out.println();
+
         System.out.println("Dealer Cards:");
+        int dealerTotal = 0;
         for(int i = 0; i < dealerCards.size(); i++) {
             System.out.println(dealerCards.get(i));
+            dealerTotal += deck.getValues().get(dealerCards.get(i).getValue());
         }
 
+        System.out.printf("Dealer Total: %d", dealerTotal);
+        System.out.println();
         System.out.println();
         
         Scanner scanner = new Scanner(System.in);
         System.out.println("Would you like to hit or stay?");
         String hitOrStay = scanner.nextLine();
-
+            
         while(!hitOrStay.equalsIgnoreCase("stay")) {
             if(hitOrStay.equalsIgnoreCase("hit")) {
                 int userCardIndex = random.nextInt(deckArray.length);
@@ -54,21 +62,56 @@ public class Dealer {
             System.out.println();
         
             System.out.println("User Cards:");
+            userTotal = 0;
             for(int i = 0; i < userCards.size(); i++) {
                 System.out.println(userCards.get(i));
+                userTotal += deck.getValues().get(userCards.get(i).getValue());
             }
 
+            System.out.printf("User Total: %d", userTotal);
+            System.out.println();
             System.out.println();
 
             System.out.println("Dealer Cards:");
+            dealerTotal = 0;
             for(int i = 0; i < dealerCards.size(); i++) {
                 System.out.println(dealerCards.get(i));
+                dealerTotal += deck.getValues().get(dealerCards.get(i).getValue());
             }
 
+            System.out.printf("Dealer Total: %d", dealerTotal);
             System.out.println();
+            System.out.println();
+
+            if(userTotal == 21 || dealerTotal > 21) {
+                System.out.println("Congratulations, you have won!");
+                break;
+            } else if(userTotal > 21) {
+                System.out.println("You have lost.");
+                break;
+            }
 
             System.out.println("Would you like to hit or stay?");
             hitOrStay = scanner.nextLine();
+        }
+            
+        if(userTotal < 21) {
+            while(dealerTotal <= 16) {
+                int dealerCardIndex = random.nextInt(deckArray.length);
+                Card dealerCard = deckArray[dealerCardIndex];
+                dealerCards.add(dealerCard);
+                dealerTotal += deck.getValues().get(dealerCard.getValue());
+            }
+        }
+        
+        System.out.println();
+
+        if(userTotal <= 21 && userTotal > dealerTotal) {
+            System.out.println("Congratulations, you have won!");
+        } else if(userTotal < dealerTotal) {
+            System.out.println("You have lost.");
+        } else if(userTotal == dealerTotal) {
+            System.out.println("You have tied with the dealer.");
         }
 
         System.out.println();
@@ -77,12 +120,18 @@ public class Dealer {
         for(int i = 0; i < userCards.size(); i++) {
             System.out.println(userCards.get(i));
         }
-
+        
+        System.out.printf("User Total: %d", userTotal);
+        System.out.println();
         System.out.println();
 
         System.out.println("Dealer Cards:");
         for(int i = 0; i < dealerCards.size(); i++) {
             System.out.println(dealerCards.get(i));
         }
+
+        System.out.printf("Dealer Total: %d", dealerTotal);
+        System.out.println();
+        System.out.println();
     }
 }

@@ -27,6 +27,10 @@ public class Deck {
         deck = new Card[52];
     }
 
+    public HashMap<String, Integer> getValues() {
+        return values;
+    }
+ 
     public Card[] construct() {
         int index = 0;
         

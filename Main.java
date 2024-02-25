@@ -4,8 +4,7 @@ public class Main {
         System.out.println("Welcome to Blackjack!");
         System.out.println();
         
-        Dealer dealer = new Dealer();
-        dealer.deal();
+        Dealer.deal();
 
     }
 }
