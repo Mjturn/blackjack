@@ -50,6 +50,11 @@ public class Dealer {
         System.out.println("Would you like to hit or stay?");
         String hitOrStay = scanner.nextLine();
             
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_ORANGE = "\u001B[38;5;208m";
+        final String ANSI_YELLOW = "\u001B[33m";
+        final String ANSI_RESET = "\u001B[0m";
+
         while(!hitOrStay.equalsIgnoreCase("stay")) {
             if(hitOrStay.equalsIgnoreCase("hit")) {
                 int userCardIndex = random.nextInt(deckArray.length);
@@ -83,11 +88,11 @@ public class Dealer {
             System.out.println();
             System.out.println();
 
-            if(userTotal == 21 || dealerTotal > 21) {
-                System.out.println("Congratulations, you have won!");
+            if(userTotal == 21) {
+                System.out.println(ANSI_YELLOW + "Congratulations, you have won!" + ANSI_RESET);
                 break;
             } else if(userTotal > 21) {
-                System.out.println("You have lost.");
+                System.out.println(ANSI_RED + "You have lost." + ANSI_RESET);
                 break;
             }
 
@@ -106,12 +111,16 @@ public class Dealer {
         
         System.out.println();
 
-        if(userTotal <= 21 && userTotal > dealerTotal) {
-            System.out.println("Congratulations, you have won!");
-        } else if(userTotal < dealerTotal) {
-            System.out.println("You have lost.");
+        if(dealerTotal > 21) {
+            System.out.println(ANSI_YELLOW + "Congratulations, you have won!" + ANSI_RESET);
+        }
+
+        if(userTotal < 21 && userTotal > dealerTotal) {
+            System.out.println(ANSI_YELLOW + "Congratulations, you have won!" + ANSI_RESET);
+        } else if(dealerTotal <= 21 && userTotal < dealerTotal) {
+            System.out.println(ANSI_RED + "You have lost." + ANSI_RESET);
         } else if(userTotal == dealerTotal) {
-            System.out.println("You have tied with the dealer.");
+            System.out.println(ANSI_ORANGE + "You have tied with the dealer." + ANSI_RESET);
         }
 
         System.out.println();
